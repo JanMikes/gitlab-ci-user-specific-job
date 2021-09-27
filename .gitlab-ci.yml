@@ -17,7 +17,7 @@ production deployment 2:
   stage: deploy
   variables:
     # You can store usernames in variable too, so it does not get overwritten by some developer
-    ALLOWED_USERNAMES: "/janmikes|anotherUser/"
+    ALLOWED_USERNAMES: "janmikes|anotherUser"
   rules:
     # Job will appear in pipeline only if one of the users matches
     - if: $GITLAB_USER_LOGIN =~ $ALLOWED_USERNAMES
