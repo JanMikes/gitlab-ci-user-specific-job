@@ -4,6 +4,16 @@ stages:
 production deployment:
   stage: deploy
   rules:
+    # Job will appear in pipeline only if specific username is met
     - if: $GITLAB_USER_LOGIN == 'janmikes'
+  script:
+    - echo "This is deployment script"
+
+
+production deployment 2:
+  stage: deploy
+  rules:
+    # Job will appear in pipeline only if one of the users matches
+    - if: $GITLAB_USER_LOGIN =~ /janmikes|anotherUser/
   script:
     - echo "This is deployment script"
