@@ -3,6 +3,7 @@ stages:
 
 production deployment:
   stage: deploy
+  variables:
     # You can store usernames in variable too, so it does not get overwritten by some developer
     ALLOWED_USERNAME: "janmikes"
   rules:
@@ -14,6 +15,7 @@ production deployment:
 
 production deployment 2:
   stage: deploy
+  variables:
     # You can store usernames in variable too, so it does not get overwritten by some developer
     ALLOWED_USERNAMES: "janmikes|anotherUser"
   rules:
