@@ -17,3 +17,17 @@ production deployment 2:
     - if: $GITLAB_USER_LOGIN =~ /janmikes|anotherUser/
   script:
     - echo "This is deployment script"
+
+
+production deployment 3:
+  stage: deploy
+  variables:
+    # You can store usernames in variable too, so it does not get overwritten by some developer
+    ALLOWED_USERNAMES: "janmikes|anotherUser"
+  before_script:
+    # Debug statement
+    - echo $GITLAB_USER_LOGIN
+    # Start the job but fail it if name is not matched
+    - if [[ ! $GITLAB_USER_LOGIN =~ $ALLOWED_USERNAMES ]]; then exit 1; fi
+  script:
+    - echo "This is deployment script"
