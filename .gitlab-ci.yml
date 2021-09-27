@@ -3,5 +3,7 @@ stages:
 
 production deployment:
   stage: deploy
+  rules:
+    - if: $GITLAB_USER_LOGIN == 'janmikes'
   script:
     - echo "This is deployment script"
