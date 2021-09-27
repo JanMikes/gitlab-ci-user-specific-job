@@ -3,18 +3,22 @@ stages:
 
 production deployment:
   stage: deploy
+    # You can store usernames in variable too, so it does not get overwritten by some developer
+    ALLOWED_USERNAME: "janmikes"
   rules:
     # Job will appear in pipeline only if specific username is met
-    - if: $GITLAB_USER_LOGIN == 'xx'
+    - if: $GITLAB_USER_LOGIN == $ALLOWED_USERNAME
   script:
     - echo "This is deployment script"
 
 
 production deployment 2:
   stage: deploy
+    # You can store usernames in variable too, so it does not get overwritten by some developer
+    ALLOWED_USERNAMES: "janmikes|anotherUser"
   rules:
     # Job will appear in pipeline only if one of the users matches
-    - if: $GITLAB_USER_LOGIN =~ /xx|anotherUser/
+    - if: $GITLAB_USER_LOGIN =~ /$ALLOWED_USERNAMES/
   script:
     - echo "This is deployment script"
 
@@ -23,7 +27,7 @@ production deployment 3:
   stage: deploy
   variables:
     # You can store usernames in variable too, so it does not get overwritten by some developer
-    ALLOWED_USERNAMES: "xx|anotherUser"
+    ALLOWED_USERNAMES: "janmikes|anotherUser"
   before_script:
     # Debug statement
     - echo $GITLAB_USER_LOGIN
